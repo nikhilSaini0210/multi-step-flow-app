@@ -1,8 +1,10 @@
-🚀 Multi-Step Flow App
+# 🚀 Multi-Step Flow App
 
 A clean and modern **React Native onboarding flow** with backend integration, local persistence, and resume capability. 
 
-✨ Features
+---
+
+## ✨ Features
 
 * Multi-step onboarding (4–5 steps)
 * Conditional step (based on user goal)
@@ -13,9 +15,11 @@ A clean and modern **React Native onboarding flow** with backend integration, lo
 * Offline support (AsyncStorage)
 * API error handling with retry
 
-🧱 Tech Stack
+---
 
-📱 Frontend
+## 🧱 Tech Stack
+
+### 📱 Frontend
 
 * Expo (React Native)
 * Expo Router
@@ -23,25 +27,31 @@ A clean and modern **React Native onboarding flow** with backend integration, lo
 * AsyncStorage (local storage)
 * TypeScript
 
-⚙️ Backend
+### ⚙️ Backend
 
 * Node.js + Express
 * Prisma ORM
-* SQLite
+* SQLite (dev) / PostgreSQL (prod)
 * Zod (validation)
 * Helmet + Rate Limiting
 
-📁 Project Structure
+---
 
+## 📁 Project Structure
+
+```
 root/
-├── multi-step-flow-app
-      ├── FE /   # React Native app
-      └── BE/      # Express API
+├── multi-step-flow/
+      ├── BE/      # React Native app
+      └── FE/      # Express API
+```
 
+---
 
-📱 Frontend Setup
+## 📱 Frontend Setup
 
-cd FE
+```bash
+cd multi-step-flow
 
 npm install
 
@@ -51,26 +61,35 @@ npx expo install expo-router expo-linear-gradient \
 npm install zustand
 
 npx expo start
+```
 
 📌 Scan QR using Expo Go (same WiFi required)
 
-⚙️ Backend Setup
+---
 
-cd BE
+## ⚙️ Backend Setup
+
+```bash
+cd flow-backend
 
 npm install
-cp .env.example .env
+
 
 npx prisma generate
 npx prisma migrate dev --name init
 
 npm run dev
+```
 
 Server runs at:
 
+```
 http://localhost:3000
+```
 
-🔗 API Endpoints
+---
+
+## 🔗 API Endpoints
 
 | Method | Endpoint    | Description   |
 | ------ | ----------- | ------------- |
@@ -79,75 +98,101 @@ http://localhost:3000
 | GET    | `/progress` | Get progress  |
 | DELETE | `/progress` | Reset session |
 
-🔄 Flow Logic
+---
 
+## 🔄 Flow Logic
+
+```
 age → goal → (activity if fitness) → preferences → notifications
+```
 
 * Fitness goal → 5 steps
 * Others → 4 steps
 
-💾 Persistence
+---
+
+## 💾 Persistence
 
 * Local: AsyncStorage (instant + offline)
 * Backend: Sync for backup & resume
 
+---
 
-⚠️ Edge Handling
+## ⚠️ Edge Handling
 
 * App crash → restores progress
 * API failure → retry + local save
 * Invalid input → blocked navigation
 * Step changes → auto-adjust flow
 
-🌐 Connect Mobile to Backend
+---
+
+## 🌐 Connect Mobile to Backend
 
 Replace `localhost` with your system IP:
 
+```ts
 const BASE_URL = "http://192.168.X.X:3000";
- 
+```
 OR USE DEPLOYED URL
 
 const BASE_URL = "https://multi-step-flow-app.onrender.com";
 
-🚀 Deployment
 
-Backend
+---
 
-* Render 
+## 🚀 Deployment
+
+### Backend
+
+* Railway / Render / Fly.io
+* Switch DB → PostgreSQL
 * Run:
 
+```bash
 npx prisma migrate deploy
+```
 
-Frontend
+### Frontend
 
+```bash
 npm install -g eas-cli
 eas build --platform android
+```
 
+---
 
-📌 Key Design Decisions
+## 📌 Key Design Decisions
 
 * Zustand over Redux (simpler, faster)
 * AsyncStorage (Expo-friendly)
 * SQLite (zero setup for dev)
 * Non-blocking API (UX-first)
 
-🧠 Assumptions
+---
+
+## 🧠 Assumptions
 
 * Session ID generated on device
 * Offline-first approach
 * Fitness → activity step only
 * API failures don’t block user
 
-⚡ Quick Commands
+---
 
+## ⚡ Quick Commands
+
+```bash
 # Backend
 npm run dev
 
 # Frontend
 npx expo start
+```
 
+---
 
-🏁 Summary
+## 🏁 Summary
 
 A production-ready onboarding flow with:
 
@@ -155,5 +200,7 @@ A production-ready onboarding flow with:
 * Reliable state handling
 * Offline-first design
 * Scalable backend
+
+---
 
 💡 Built for performance, simplicity, and real-world usage.
