@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+  output = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  currentStepIndex Int     @default(0)
+  totalSteps       Int     @default(4)
+  completed        Boolean @default(false)
+  completedAt      DateTime?
+
+  answersJson String @default("{}")
+
+  lastIp      String?
+  userAgent   String?
+
+  events ProgressEvent[]
+
+  @@map("sessions")
+}
+
+model ProgressEvent {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  sessionId        String
+  session          Session @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  stepIndex        Int
+  eventType        String  // "step_saved" | "completed" | "reset"
+  answersSnapshot  String  @default("{}")
+
+  @@index([sessionId])
+  @@map("progress_events")
+}
