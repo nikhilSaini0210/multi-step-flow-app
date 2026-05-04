@@ -12,7 +12,6 @@ dist/
 # Database
 *.db
 *.db-journal
-prisma/migrations/
 
 # Prisma generated client
 prisma/generated/
