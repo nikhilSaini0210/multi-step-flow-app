@@ -8,7 +8,7 @@
     "types": [
       "node"
     ],
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
@@ -17,14 +17,14 @@
     "resolveJsonModule": true,
     "declaration": true,
     "declarationMap": true,
-    "sourceMap": true,
+    "sourceMap": true
   },
   "include": [
-    "src/**/*",
+    "src",
     "prisma"
   ],
   "exclude": [
     "node_modules",
-    "dist",
+    "dist"
   ]
 }
