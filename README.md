@@ -51,7 +51,7 @@ root/
 ## 📱 Frontend Setup
 
 ```bash
-cd BE
+cd FE
 
 npm install
 
@@ -70,7 +70,7 @@ npx expo start
 ## ⚙️ Backend Setup
 
 ```bash
-cd FE
+cd BE
 
 npm install
 
