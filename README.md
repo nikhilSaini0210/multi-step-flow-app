@@ -31,7 +31,7 @@ A clean and modern **React Native onboarding flow** with backend integration, lo
 
 * Node.js + Express
 * Prisma ORM
-* SQLite (dev) / PostgreSQL (prod)
+* SQLite
 * Zod (validation)
 * Helmet + Rate Limiting
 
@@ -51,7 +51,7 @@ root/
 ## 📱 Frontend Setup
 
 ```bash
-cd multi-step-flow
+cd BE
 
 npm install
 
@@ -70,7 +70,7 @@ npx expo start
 ## ⚙️ Backend Setup
 
 ```bash
-cd flow-backend
+cd FE
 
 npm install
 
@@ -145,8 +145,7 @@ const BASE_URL = "https://multi-step-flow-app.onrender.com";
 
 ### Backend
 
-* Railway / Render / Fly.io
-* Switch DB → PostgreSQL
+* Render
 * Run:
 
 ```bash
